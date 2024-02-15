@@ -18,72 +18,47 @@ An easy-to-use Voice Conversion framework based on VITS.<br><br>
 
 
 > [!NOTE]
-> Currently under development... Provided as a library and API in rvc
+> 現在開発中です...rvcのライブラリとAPIを提供する予定です。
 
 ## Installation and usage
 
 ### Standard Setup
 
-First, create a directory in your project. The `assets` folder will contain the models needed for inference and training, and the `result` folder will contain the results of the training.
+最初にプロジェクトにディレクトリを作成します。`assets`フォルダには推論や学習に必要なモデル、`result`フォルダには学習の結果が保存されます。
 
 ```sh
 rvc init
 ```
-This will create an `assets` folder and `.env` in your working directory.
 
+これにより、作業ディレクトリに`assets`フォルダと`.env`が作成されます。
 > [!WARNING]
-> The directory should be empty or without an assets folder.
+> この時、ディレクトリは空もしくは`assets`フォルダおよび`.env`ファイルがない状態にしてください
 
 ### Custom Setup
 
-If you have already downloaded models or want to change these configurations, edit the `.env` file.
-If you do not already have a `.env` file,
+既にモデルをダウンロードしている場合や、これらの構成を変更したい場合、`.env`ファイルを編集してください。
+まだ`.env`ファイルがない場合、
 
 ```sh
 rvc env create
 ```
-can create one.
 
-Also, when downloading a model, you can use the
+にて作成できます。
+
+また、モデルをダウンロードするときは
 
 ```sh
 rvc dlmodel
 ```
-or
+もしくは
 ```
 rvc dlmodel {download_dir}
 ```
 
-Finally, specify the location of the model in the env file, and you are done!
+にてダウンロードできます。
 
+最後に、envファイルにてモデルの場所などを指定してあげれば、終了です！
 
-
-### Library Usage
-
-#### Inference Audio
-```python
-from pathlib import Path
-
-from dotenv import load_dotenv
-from scipy.io import wavfile
-
-from rvc.modules.vc.modules import VC
-
-
-def main():
-      vc = VC()
-      vc.get_vc("{model.pth}")
-      tgt_sr, audio_opt, times, _ = vc.vc_single(
-            1, Path("{InputAudio}")
-      )
-      wavfile.write("{OutputAudio}", tgt_sr, audio_opt)
-
-
-if __name__ == "__main__":
-      load_dotenv("{envPath}")
-      main()
-
-```
 
 ### CLI Usage
 
@@ -109,16 +84,17 @@ rvc infer -m {model.pth} -i {input.wav} -o {output.wav}
 | rms_mix_rate  | -rmr       | float        | 0.25          | Adjust the volume envelope scaling. Closer to 0, the more it mimicks the volume of the original vocals. Can help mask noise and make volume sound more natural when set relatively low. Closer to 1 will be more of a consistently loud volume |
 | protect       | -p         | float        | 0.33          | Protect voiceless consonants and breath sounds to prevent artifacts such as tearing in electronic music. Set to 0.5 to disable. Decrease the value to increase protection, but it may reduce indexing accuracy                                 |
 
+
 ### API Usage
-First, start up the server.
+最初に、サーバーを立ち上げます。
 ```sh
 rvc-api
 ```
-or
+または
 ```sh
 poetry run poe rvc-api
 ```
-
+にて実行されます。
 #### Inference Audio
 ```sh
 curl -X 'POST' \
@@ -129,3 +105,4 @@ curl -X 'POST' \
       -F 'input={input audio path}' \
       -o {output audio path}
 ```
+
