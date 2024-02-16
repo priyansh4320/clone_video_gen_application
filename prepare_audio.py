@@ -18,6 +18,9 @@ def switch_names(string,name_to_replace, replace_with):
   string = string.replace(name_to_replace,replace_with)
   return string
 
+
+
+
 #-----------------------------------------------------------------
 # translate the texts to audios
 #translate to marathi 
@@ -41,7 +44,7 @@ def translate_marathi(transcription_file_path):
 
 #---------------------------------------------------------------
 #translate to hindi
-#global_pipe_mar = pipeline("text-to-speech",model="facebook/mms-tts-hin",tokenizer='facebook/mms-tts-hin')
+global_pipe_mar = pipeline("text-to-speech",model="facebook/mms-tts-hin",tokenizer='facebook/mms-tts-hin')
 def translate_hindi(transcription_file_path):
   with open(transcription_file_path,'r') as file:
     text = file.read()
@@ -57,4 +60,8 @@ def translate_hindi(transcription_file_path):
     i+=1
     time.sleep(1)
 
-download_audio('https://www.youtube.com/shorts/RwxrfULlqQU')
+
+if __name__=='__main__':
+  #download_audio('https://www.youtube.com/shorts/RwxrfULlqQU')
+  #transcribe_audio(audio_file)
+  #translate_hindi("transcription_file_path")
