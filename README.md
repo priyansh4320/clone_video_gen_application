@@ -1,3 +1,15 @@
+# TITLE:  clone VIDEO GEN APPLICATION
+## the project does this: 
+- Download a YouTube video
+- extract audio and transcript in local/English language
+- prepare transcripts for voice conversion (i.e., for high-speed conversion)
+- utilize RVC pipeline to generate a voice clone model of the speaker.
+- use the cloned voice model to generate audio files with the prepared transcript. (tailored for bulk audio transcription)
+- attach, time align, lip align audio to target video and prepare video for sharing.
+
+## potential use
+The project can be used as a Digital marketing tools to generate videos with cloned audio of celebrities, and many more. 
+
 <div align="center">
 
 <h1>Retrieval-based-Voice-Conversion</h1>
